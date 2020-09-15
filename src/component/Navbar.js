@@ -5,7 +5,6 @@ class Navbar extends React.Component{
         return(
             <React.Fragment>
             <div className="nav">
-                <h1 style={styles.heading}>Movie Mania</h1>
                 <div className="search-container">
                     <input/>
                     <button id="search-btn">Search..</button>
@@ -13,12 +12,6 @@ class Navbar extends React.Component{
             </div>
             </React.Fragment>
         );
-    }
-}
-const styles={
-    heading:{
-        color:'white',
-        fontFamily:'fangsong'
     }
 }
 export default Navbar;
