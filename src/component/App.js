@@ -7,13 +7,14 @@ class App extends React.Component{
   componentDidMount(){
     const {Store}=this.props;
     Store.subscribe(()=>{
+      console.log(Store.getState())
       this.forceUpdate();
     })
     Store.dispatch(AddMovie(data));
   }
   isFav=(movie)=>{
-    const { fav } =this.props.Store.getState();
-    let index=fav.indexOf(movie);
+    const { list } =this.props.Store.getState();
+    let index=list.fav.indexOf(movie);
     if(index !== -1){
       return true;
     }
@@ -23,9 +24,9 @@ class App extends React.Component{
     this.props.Store.dispatch(ShowTab(value))
   }
   render(){
-    console.log(this.props.Store.getState())
-    const {movies,fav,IsFavouriteTab}=this.props.Store.getState();
-    // const currentTab={IsFavouriteTab ? fav :movies}
+    const { list }=this.props.Store.getState();
+    console.log(list)
+    const {movies,fav,IsFavouriteTab}= list;
     const currentTab=IsFavouriteTab?fav:movies;
     return (
       <div className="App">

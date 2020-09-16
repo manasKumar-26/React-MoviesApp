@@ -1,10 +1,19 @@
-import { Add_movies,Add_fav,Remove_fav,Show_MovieTab } from '../action/index'
-const initialState={
+import { Add_movies,Add_fav,Remove_fav,Show_MovieTab } from '../action/index';
+import { combineReducers } from 'redux'
+//Initaial State Defination
+const initialMovieState={
     movies:[],
     fav:[],
     IsFavouriteTab:false
 }
-export default function movies(state=initialState,action){
+const initialSearchState={
+    result:{}
+}
+const initialRootState={
+    movies:initialMovieState,
+    search:initialSearchState,
+}
+export function movies(state=initialMovieState,action){
     if(action.type === Add_movies){
         return {
             ...state,
@@ -34,3 +43,16 @@ export default function movies(state=initialState,action){
     }
     return state;
 }
+export function search(state=initialSearchState,action){
+    return state;
+}
+// export default function rootReducer(state=initialRootState,action){
+//     return {
+//         list:movies(state.list,action),
+//         search:search(state.search,action)
+//     }
+// }
+export default combineReducers({
+    list:movies,
+    search:search
+});
