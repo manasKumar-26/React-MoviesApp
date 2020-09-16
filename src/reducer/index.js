@@ -1,4 +1,4 @@
-import { Add_movies,Add_fav,Remove_fav,Show_MovieTab } from '../action/index';
+import { Add_movies,Add_fav,Remove_fav,Show_MovieTab,Add_Movie_Search,Add_movies_to_list } from '../action/index';
 import { combineReducers } from 'redux'
 //Initaial State Defination
 const initialMovieState={
@@ -7,7 +7,9 @@ const initialMovieState={
     IsFavouriteTab:false
 }
 const initialSearchState={
-    result:{}
+    result:{},
+    showSearchResults:false,
+
 }
 const initialRootState={
     movies:initialMovieState,
@@ -41,9 +43,28 @@ export function movies(state=initialMovieState,action){
             IsFavouriteTab:action.value
         }
     }
+    else if(action.type === Add_movies_to_list){
+        return {
+            ...state,
+            movies:[action.movie,...state.movies]
+        }
+    }
     return state;
 }
 export function search(state=initialSearchState,action){
+    if(action.type === Add_Movie_Search){
+        return {
+            ...state,
+            result:action.movie,
+            showSearchResults:true,
+        }
+    }
+    else if(action.type === Add_movies_to_list){
+        return {
+            ...state,
+            showSearchResults:false
+        }
+    }
     return state;
 }
 // export default function rootReducer(state=initialRootState,action){

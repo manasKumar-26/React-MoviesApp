@@ -24,13 +24,12 @@ class App extends React.Component{
     this.props.Store.dispatch(ShowTab(value))
   }
   render(){
-    const { list }=this.props.Store.getState();
-    console.log(list)
+    const { list,search }=this.props.Store.getState();
     const {movies,fav,IsFavouriteTab}= list;
     const currentTab=IsFavouriteTab?fav:movies;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar dispatch={this.props.Store.dispatch} search={search}/>
         <div className="main">
             <div className="tabs">
               <div className={`tab ${IsFavouriteTab? '': 'active-tabs'}`} onClick={()=>this.ChangeTabs(false)}>Movies</div>
