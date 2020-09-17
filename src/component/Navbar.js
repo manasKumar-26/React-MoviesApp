@@ -1,5 +1,6 @@
 import React from 'react';
-import {handleMovieSearch,addMovieToList} from '../action/index'
+import {handleMovieSearch,addMovieToList} from '../action/index';
+import {storeContext} from '../index';
 class Navbar extends React.Component{
     constructor(){
        super();
@@ -26,7 +27,6 @@ class Navbar extends React.Component{
     render(){
         const {result:movie,showSearchResults} =this.props.search;
         return(
-            <React.Fragment>
             <div className="nav">
                 <div className="search-container">
                     <input onChange={this.handleChange}/>
@@ -45,11 +45,17 @@ class Navbar extends React.Component{
                         </div>
                     }
                 </div>
-            </div>
-                 
-                    </React.Fragment>
-               
+            </div>               
         );
     }
 }
-export default Navbar;
+class NavbarWrapper extends React.Component{
+    render(){
+        return(
+            <storeContext.Consumer>
+                {(store)=><Navbar dispatch={store.dispatch} search={this.props.search}/>}
+            </storeContext.Consumer>
+        )
+    }
+}
+export default NavbarWrapper;

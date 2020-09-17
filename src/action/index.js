@@ -40,6 +40,12 @@ export function addMovieToList(movie){
         movie
     }
 }
+export function AddMovieSearch(movie){
+    return {
+        type:'Add_Movie_Search',
+        movie
+    }
+}
 export function handleMovieSearch(movie){
     const url=`https://www.omdbapi.com/?apikey=3952e5aa&t=${movie}`;
     return function(dispatch){
@@ -48,11 +54,5 @@ export function handleMovieSearch(movie){
         .then((movie)=>{
             dispatch(AddMovieSearch(movie));
         })
-    }
-}
-export function AddMovieSearch(movie){
-    return {
-        type:'Add_Movie_Search',
-        movie
     }
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import { data } from '../data';
 import Navbar from './Navbar';
 import Moviecard from './Moviecard';
-import { AddMovie,ShowTab } from '../action/index'
+import { AddMovie,ShowTab } from '../action/index';
+import {storeContext} from '../index'
 class App extends React.Component{
   componentDidMount(){
     const {Store}=this.props;
@@ -29,7 +30,7 @@ class App extends React.Component{
     const currentTab=IsFavouriteTab?fav:movies;
     return (
       <div className="App">
-        <Navbar dispatch={this.props.Store.dispatch} search={search}/>
+        <Navbar search={search}/>
         <div className="main">
             <div className="tabs">
               <div className={`tab ${IsFavouriteTab? '': 'active-tabs'}`} onClick={()=>this.ChangeTabs(false)}>Movies</div>
@@ -46,5 +47,14 @@ class App extends React.Component{
     );
   }
 }
+class AppWrapper extends React.Component{
+  render(){
+    return (
+      <storeContext.Consumer>
+        {(store)=><App Store={store}/>}
+      </storeContext.Consumer>
+    )
+  }
+}
 
-export default App;
+export default AppWrapper;

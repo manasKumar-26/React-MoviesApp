@@ -11,10 +11,10 @@ const initialSearchState={
     showSearchResults:false,
 
 }
-const initialRootState={
-    movies:initialMovieState,
-    search:initialSearchState,
-}
+// const initialRootState={
+//     movies:initialMovieState,
+//     search:initialSearchState,
+// }
 export function movies(state=initialMovieState,action){
     if(action.type === Add_movies){
         return {
