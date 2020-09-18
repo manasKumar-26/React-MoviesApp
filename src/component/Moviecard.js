@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddFav,RemoveFav } from '../action/index'
+import { AddFav,RemoveFav } from '../action/index';
 class Moviecard extends React.Component{
     Favourite=()=>{
         this.props.dispatch(AddFav(this.props.movie))
@@ -30,4 +30,5 @@ class Moviecard extends React.Component{
         );
     }
 }
+
 export default Moviecard;
